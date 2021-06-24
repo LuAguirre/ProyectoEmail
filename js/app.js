@@ -1,7 +1,7 @@
 // variables
-const email = document.querySelector('#email');
-const asunto = document.querySelector('#asunto');
-const mensaje = document.querySelector('#mensaje');
+const email = document.getElementById('email');
+const asunto = document.getElementById('asunto');
+const mensaje = document.getElementById('mensaje');
 const btnEnviar = document.getElementById('enviar')
 const form = document.querySelector('#enviar-mail')
 
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', startApp)
 email.addEventListener('blur', validetaForm);
 asunto.addEventListener('blur', validetaForm);
 mensaje.addEventListener('blur', validetaForm);
-formulario.addEventListener('submit', sendEmail);
+form.addEventListener('submit', sendEmail);
 }
 
 function startApp(){
@@ -24,7 +24,7 @@ function validetaForm(e){
      if(e.target.value.length > 0){
 
           const error = document.querySelector('p.error');
-          //error.remove();
+          
 
           e.target.classList.remove('border', 'border-red-500');
           e.target.classList.add('border', 'border-green-500');
@@ -55,5 +55,17 @@ function showError(message){
           form.appendChild(messageError)
      }
      
+}
+
+function sendEmail(e){
+     e.preventDefault();
+
+     const spinner = document.getElementById('spinner');
+     spinner.style.display = 'flex';
+
+     setTimeout(function(){ 
+          alert("Email enviado correctamente");
+          spinner.style.display = 'none';
+      }, 3000);
 }
 
